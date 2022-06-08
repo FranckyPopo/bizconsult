@@ -1,21 +1,23 @@
-"""bizconsult URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
+from front import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.front_index, name="front_index"),
+    path('about/', views.front_about, name="front_about"),
+    path('contact/', views.front_contact, name="front_contact"),
+    path('feature/', views.front_feature, name="front_feature"),
+    path('quote/', views.front_quote, name="front_quote"),
+    path('service/', views.front_service, name="front_service"),
+    path('team/', views.front_team, name="front_team"),
+    path('testimonial/', views.front_testimonial, name="front_testimonial"),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(
+        settings.MEDIA_URL, 
+        document_root=settings.MEDIA_ROOT
+    )

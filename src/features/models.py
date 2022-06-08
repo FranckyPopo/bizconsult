@@ -1,6 +1,10 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import AbstractUser
 
+class User(AbstractUser):
+    photo = models.ImageField(blank=True)
+    profession = models.CharField(max_length=150)
 
 class Newsletter(models.Model):
     email = models.EmailField(unique=True)
