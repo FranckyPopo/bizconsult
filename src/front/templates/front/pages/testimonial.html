@@ -1,6 +1,5 @@
 {% extends 'front/base/base_auther.html' %}
 {% load static %}
-{% block content %}{% endblock content %}
     {% block content %}
         <!-- Testimonial Start -->
         <div class="container-xxl py-6">
@@ -10,28 +9,19 @@
                     <h2 class="mb-5">What Our Clients Say!</h2>
                 </div>
                 <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="testimonial-item rounded p-4">
-                        <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
-                        <p>Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam</p>
-                        <div class="d-flex align-items-center">
-                            <img class="img-fluid flex-shrink-0 rounded-circle" src="{% static 'front/img/testimonial-1.jpg' %}">
-                            <div class="ps-3">
-                                <h6 class="mb-1">Client Name</h6>
-                                <small>Profession</small>
+                    {% for testimonial in testimonials %}
+                        <div class="testimonial-item rounded p-4">
+                            <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
+                            <p>{{ testimonial.message }}</p>
+                            <div class="d-flex align-items-center">
+                                <img class="img-fluid flex-shrink-0 rounded-circle" src="{{ testimonial.user.photo.url }}">
+                                <div class="ps-3">
+                                    <h6 class="mb-1">{{ testimonial.user.first_name }} {{ testimonial.user.last_name }}</h6>
+                                    <small>{{ testimonial.user.profession }}</small>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="testimonial-item rounded p-4">
-                        <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
-                        <p>Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam</p>
-                        <div class="d-flex align-items-center">
-                            <img class="img-fluid flex-shrink-0 rounded-circle" src="{% static 'front/img/testimonial-2.jpg' %}">
-                            <div class="ps-3">
-                                <h6 class="mb-1">Client Name</h6>
-                                <small>Profession</small>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

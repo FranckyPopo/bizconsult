@@ -9,30 +9,20 @@
                     <h2 class="mb-5">Meet Our Team Members</h2>
                 </div>
                 <div class="row g-4">
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="team-item">
-                            <h5>Full Name</h5>
-                            <p class="mb-4">Designation</p>
-                            <img class="img-fluid rounded-circle w-100 mb-4" src="{% static 'front/img/team-1.jpg' %}" alt="">
-                            <div class="d-flex justify-content-center">
-                                <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fab fa-linkedin-in"></i></a>
+                    {% for team in teams %}
+                        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="team-item">
+                                <h5>{{ team.name }}</h5>
+                                <p class="mb-4">{{ team.designation }}</p>
+                                <img class="img-fluid rounded-circle w-100 mb-4" src="{{ team.photo.url }}" alt="">
+                                <div class="d-flex justify-content-center">
+                                    <a class="btn btn-square text-primary bg-white m-1" href="{{ team.facebook_link }}"><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn btn-square text-primary bg-white m-1" href="{{ team.twitter_link }}"><i class="fab fa-twitter"></i></a>
+                                    <a class="btn btn-square text-primary bg-white m-1" href="{{ team.likedin_link }}"><i class="fab fa-linkedin-in"></i></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="team-item">
-                            <h5>Full Name</h5>
-                            <p class="mb-4">Designation</p>
-                            <img class="img-fluid rounded-circle w-100 mb-4" src="{% static 'front/img/team-2.jpg' %}" alt="">
-                            <div class="d-flex justify-content-center">
-                                <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

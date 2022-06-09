@@ -6,7 +6,12 @@ def front_error_404(request):
 
 
 def front_about(request):
-    return render(request, "front/pages/about.html")
+    datas = {
+        "about": About.objects.first(),
+        "features": Feature.objects.all(),
+        "teams": OurTeam.objects.all(),
+    }
+    return render(request, "front/pages/about.html", context=datas)
 
 
 def front_contact(request):
@@ -14,7 +19,7 @@ def front_contact(request):
 
 
 def front_feature(request):
-    return render(request, "front/pages/feature.html")
+    return render(request, "front/pages/feature.html", context={"features": Feature.objects.all()})
 
 
 def front_index(request):
@@ -28,7 +33,6 @@ def front_index(request):
         "logos": LogoCompany.objects.all(),
         "testimonials": Testimonial.objects.all(),
         "teams": OurTeam.objects.all(),
-        
     }
     return render(request, "front/pages/index.html", context=datas)
 
@@ -38,6 +42,10 @@ def front_quote(request):
 
 
 def front_service(request):
+    datas = {
+        "services": OurService.objects.all(),
+        "testimonials": Testimonial.objects.all(),
+    }
     return render(request, "front/pages/service.html")
 
 

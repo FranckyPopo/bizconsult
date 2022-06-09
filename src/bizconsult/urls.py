@@ -14,6 +14,7 @@ urlpatterns = [
     path('service/', views.front_service, name="front_service"),
     path('team/', views.front_team, name="front_team"),
     path('testimonial/', views.front_testimonial, name="front_testimonial"),
+    path('404/', views.front_testimonial, name="front_error_404"),
 ]
 
 if settings.DEBUG:
