@@ -10,7 +10,10 @@
     
         <!-- Favicon -->
         <link href="{% static 'front/img/favicon.ico' %}" rel="icon">
-    
+                
+        <!-- Htmx -->
+        <script src="https://unpkg.com/htmx.org@1.7.0" integrity="sha384-EzBXYPt0/T6gxNp0nuPtLkmRpmDBbjg6WmCUZRLXBBwYYmwAUxzlSGej0ARHX0Bo" crossorigin="anonymous"></script>
+
         <!-- Google Web Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,7 +56,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
-                        <a href="{% url 'front_index' %}" class="nav-item nav-link active">Home</a>
+                        <a href="{% url 'front_index' %}" class="nav-item nav-link {% if active %} active {% endif %}">Home</a>
                         <a href="{% url 'front_about' %}" class="nav-item nav-link">About</a>
                         <a href="{% url 'front_service' %}" class="nav-item nav-link">Service</a>
                         <div class="nav-item dropdown">
@@ -174,5 +177,9 @@
     <!-- Template Javascript -->
     <script src="{% static 'front/js/main.js' %}"></script>
 
+    <!-- Sweealert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {% block script %}{% endblock script %}
+    
 </body>
 </html>
