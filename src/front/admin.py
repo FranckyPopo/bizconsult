@@ -27,7 +27,7 @@ class LogoCompany(admin.ModelAdmin):
     
 @admin.register(Testimonial)
 class Testimonial(admin.ModelAdmin):
-    list_display = ("username", "message")
+    list_display = ("user", "message")
 
 @admin.register(Designation)
 class Designation(admin.ModelAdmin):

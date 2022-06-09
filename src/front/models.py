@@ -86,9 +86,9 @@ class OurTeam(models.Model):
     name = models.CharField(max_length=150)
     designation = models.ForeignKey(Designation, models.CASCADE)
     photo = models.ImageField() 
-    facebook_link = models.URLField()
-    twitter_link = models.URLField()
-    likedin_link = models.URLField()
+    facebook_link = models.URLField(blank=True)
+    twitter_link = models.URLField(blank=True)
+    likedin_link = models.URLField(blank=True)
     
     created = models.DateTimeField(default=timezone.now())
     deleted = models.DateTimeField(auto_now=True)

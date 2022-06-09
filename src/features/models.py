@@ -3,7 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
-    photo = models.ImageField(blank=True)
+    photo = models.ImageField()
     profession = models.CharField(max_length=150)
 
 class Newsletter(models.Model):

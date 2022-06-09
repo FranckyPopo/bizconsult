@@ -147,7 +147,7 @@
                             <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
                             <p>{{ testimonial.message }}</p>
                             <div class="d-flex align-items-center">
-                                <img class="img-fluid flex-shrink-0 rounded-circle" src="{% static 'front/img/testimonial-1.jpg' %}">
+                                <img class="img-fluid flex-shrink-0 rounded-circle" src="{{ testimonial.user.photo.url }}">
                                 <div class="ps-3">
                                     <h6 class="mb-1">{{ testimonial.user.first_name }} {{ testimonial.user.last_name }}</h6>
                                     <small>{{ testimonial.user.profession }}</small>
@@ -173,7 +173,7 @@
                             <div class="team-item">
                                 <h5>{{ team.name }}</h5>
                                 <p class="mb-4">{{ team.designation }}</p>
-                                <img class="img-fluid rounded-circle w-100 mb-4" src="{% static 'front/img/team-1.jpg' %}" alt="">
+                                <img class="img-fluid rounded-circle w-100 mb-4" src="{{ team.photo.url }}" alt="">
                                 <div class="d-flex justify-content-center">
                                     <a class="btn btn-square text-primary bg-white m-1" href="{{ team.facebook_link }}"><i class="fab fa-facebook-f"></i></a>
                                     <a class="btn btn-square text-primary bg-white m-1" href="{{ team.twitter_link }}"><i class="fab fa-twitter"></i></a>
