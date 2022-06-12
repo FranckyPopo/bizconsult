@@ -132,8 +132,13 @@
                         <h5 class="text-white mb-4">Newsletter</h5>
                         <p>Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulpu</p>
                         <div class="position-relative w-100 mt-3">
-                            <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Your Email" style="height: 48px;">
-                            <button type="button" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-paper-plane text-primary fs-4"></i></button>
+                            <form method="post">
+                                {% csrf_token %}
+                                <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Your Email" style="height: 48px;" name="email_newlater">
+                                <button type="submit" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"  hx-post="{% url 'front_index' %}" hx-swap="none" hx-trigger="click">
+                                    <i class="fa fa-paper-plane text-primary fs-4"></i>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -173,13 +178,15 @@
     <script src="{% static 'front/lib/easing/easing.min.js' %}"></script>
     <script src="{% static 'front/lib/waypoints/waypoints.min.js' %}"></script>
     <script src="{% static 'front/lib/owlcarousel/owl.carousel.min.js' %}"></script>
-
+    
     <!-- Template Javascript -->
     <script src="{% static 'front/js/main.js' %}"></script>
 
+    <!-- Ajout personnel -->
+    <script src="{% static 'front/js/sweetalert.js' %}"></script>
+    
     <!-- Sweealert -->
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    {% block script %}{% endblock script %}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
 </body>
 </html>
