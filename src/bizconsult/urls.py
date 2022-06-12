@@ -8,7 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.RequestIndex.as_view(), name="front_index"),
     path('about/', views.front_about, name="front_about"),
-    path('contact/', views.front_contact, name="front_contact"),
+    path('contact/', views.RequestContact.as_view(), name="front_contact"),
     path('feature/', views.front_feature, name="front_feature"),
     path('quote/', views.front_quote, name="front_quote"),
     path('service/', views.front_service, name="front_service"),

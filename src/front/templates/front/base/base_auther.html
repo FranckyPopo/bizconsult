@@ -29,6 +29,9 @@
     
         <!-- Template Stylesheet -->
         <link href="{% static 'front/css/style.css' %}" rel="stylesheet">
+
+        <!-- Htmx -->
+        <script src="https://unpkg.com/htmx.org@1.7.0" integrity="sha384-EzBXYPt0/T6gxNp0nuPtLkmRpmDBbjg6WmCUZRLXBBwYYmwAUxzlSGej0ARHX0Bo" crossorigin="anonymous"></script>
     </head>
 <body>
     <div class="container-xxl bg-white p-0">
@@ -178,14 +181,14 @@
     <!-- Template Javascript -->
     <script src="{% static 'front/js/main.js' %}"></script>
 
+    <!-- Ajout personnel -->
+    <script src="{% static 'front/js/sweetalert.js' %}"></script>
+    
+    <!-- Sweealert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 <script>
-    {% for message in messages %}
-    Swal.fire({
-        icon: '{{ message.tags }}',
-        title: '{{ message.tags }}',
-        text: '{{ message }}',
-      })
-    {% endfor %}
+    
 </script>
 </html>
