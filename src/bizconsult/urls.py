@@ -3,14 +3,15 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from front import views
+from features.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.RequestIndex.as_view(), name="front_index"),
+    path('', RequestIndex.as_view(), name="front_index"),
     path('about/', views.front_about, name="front_about"),
-    path('contact/', views.RequestContact.as_view(), name="front_contact"),
+    path('contact/', RequestContact.as_view(), name="front_contact"),
     path('feature/', views.front_feature, name="front_feature"),
-    path('quote/', views.front_quote, name="front_quote"),
+    path('quote/', PageQuote.as_view(), name="front_quote"),
     path('service/', views.front_service, name="front_service"),
     path('team/', views.front_team, name="front_team"),
     path('testimonial/', views.front_testimonial, name="front_testimonial"),
