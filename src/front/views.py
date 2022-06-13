@@ -1,4 +1,4 @@
-from re import search
+import re
 import json
 from features.models import *
 from .models import *
@@ -27,7 +27,7 @@ class RequestIndex(View):
         regex = "^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$"
         email = request.POST["email_newlater"]
 
-        if search(regex, email):  
+        if re.search(regex, email):  
             try:
                 data = Newsletter.objects.create(email=email)  
                 data.save()
@@ -93,28 +93,34 @@ class RequestContact(View):
         subject = request.POST["subject"]    
         message = request.POST["message"]   
         
-        print(bool(name), bool(email), bool(subject), bool(message))
-        
-        if search(regex, email) and len(name) <= 150 and len(subject) <= 150 and len(message) <= 1000:
+        if (
+            re.search(regex, email) 
+            and 0 < len(name) <= 150 
+            and 0 < len(subject) <= 150
+            and 0 < len(message) <= 1000
+            and not name.isspace()
+            and not subject.isspace()
+            and not message.isspace()
+        ):
             Contact.objects.create(email=email, name=name, message=message, subject=subject)
             return HttpResponse(
-                    status=204,
-                    headers={
-                        "HX-Trigger": json.dumps({
-                            "showMessage": {
-                                "message": "Vôtre demande a été bien pris en charge",
-                                "icon": "success",
-                                "title": "Contact"
-                            }
-                        })
-                    }
-                )
+                status=204,
+                headers={
+                    "HX-Trigger": json.dumps({
+                        "showMessage": {
+                            "message": "Vôtre demande a été bien pris en charge",
+                            "icon": "success",
+                            "title": "Contact"
+                        }
+                    })
+                }
+            )
         return HttpResponse(
             status=204,
             headers={
                 "HX-Trigger": json.dumps({
                     "showMessage": {
-                        "message": "Vôtre demande a échoué, veuillez vérifier vôtre les différent champs et résayer",
+                        "message": "Vôtre demande a échoué, veuillez vérifier vôtre les différents champs et résayer",
                         "icon": "error",
                         "title": "Contact"
                     }
