@@ -10,6 +10,7 @@ def front_about(request):
     datas = {
         "about": About.objects.first(),
         "features": Feature.objects.all(),
+        "feature_description": FeatureDescription.objects.first(),
         "teams": OurTeam.objects.all(),
     }
     return render(request, "front/pages/about.html", context=datas)
@@ -28,11 +29,11 @@ def front_service(request):
 
 
 def front_team(request):
-    return render(request, "front/pages/team.html")
+    return render(request, "front/pages/team.html", context={"teams": OurTeam.objects.all()})
 
 
 def front_testimonial(request):
-    return render(request, "front/pages/testimonial.html")
+    return render(request, "front/pages/testimonial.html", context={"testimonials": Testimonial.objects.all()})
 
 
 
