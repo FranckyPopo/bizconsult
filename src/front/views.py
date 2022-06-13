@@ -30,7 +30,6 @@ class RequestIndex(View):
         if re.search(regex, email):  
             try:
                 data = Newsletter.objects.create(email=email)  
-                data.save()
                 return HttpResponse(
                     status=204,
                     headers={
@@ -120,14 +119,60 @@ class RequestContact(View):
             headers={
                 "HX-Trigger": json.dumps({
                     "showMessage": {
-                        "message": "Vôtre demande a échoué, veuillez vérifier vôtre les différents champs et résayer",
+                        "message": "Vôtre demande a échoué, veuillez vérifier les différents champs et résayer",
                         "icon": "error",
                         "title": "Contact"
                     }
                 })
             }
         )
-        
+     
+class PageQuote(View):
+    def get(self, request):
+        return render(request, "front/pages/quote.html")
+    
+    def post(self, request):
+        regex = "^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$"
+        name = request.POST["name"]
+        email = request.POST["email"]
+        service = request.POST["Services"]
+        message = request.POST["message"]
+
+        if(
+            re.search(regex, email) 
+            and 0 < len(name) <= 150
+            and 0 < len(service) <= 150
+            and 0 < len(message) <= 1000
+            and not name.isspace()
+            and not service.isspace()
+            and not message.isspace()
+        ):
+            Quote.objects.create(email=email, name=name, message=message, service=service)
+            return HttpResponse(
+                status=204,
+                headers={
+                    "HX-Trigger": json.dumps({
+                        "showMessage": {
+                            "message": "Vôtre demande de devis a bien été envoyé.",
+                            "icon": "success",
+                            "title": "Devis"
+                        }
+                    })
+                }
+            )
+        return HttpResponse(
+                status=204,
+                headers={
+                    "HX-Trigger": json.dumps({
+                        "showMessage": {
+                            "message": "Imposible d'envoyer la demande de devis, veuillez vérifier les différents champs et résayer.",
+                            "icon": "error",
+                            "title": "Devis"
+                        }
+                    })
+                }
+            )
+                
 def front_error_404(request):
     return render(request, "front/pages/404.html")
 
@@ -143,10 +188,6 @@ def front_about(request):
 
 def front_feature(request):
     return render(request, "front/pages/feature.html", context={"features": Feature.objects.all()})
-
-
-def front_quote(request):
-    return render(request, "front/pages/quote.html", )
 
 
 def front_service(request):
