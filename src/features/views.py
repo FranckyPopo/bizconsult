@@ -13,7 +13,6 @@ class RequestIndex(View):
             "front_index": IndexFront.objects.first(),
             "about": About.objects.first(),
             "feature_description": FeatureDescription.objects.first(),
-            "contact_site": ContactCompany.objects.first(),
             "services": OurService.objects.all(),
             "features": Feature.objects.all(),
             "logos": LogoCompany.objects.all(),

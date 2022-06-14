@@ -1,4 +1,37 @@
-{% extends 'front/base/base_auther.html' %}
+{% extends 'front/base/base.html' %}
+    {% block nav_bar %}
+        <div class="container-xxl bg-primary page-header">
+            <div class="container text-center">
+                <h1 class="text-white animated zoomIn mb-3">
+                    {% if request.build_absolute_uri == "http://127.0.0.1:8000/about/" %}
+                        About Us
+                    {% elif request.build_absolute_uri == "http://127.0.0.1:8000/service/"%}
+                        Services
+                    {% elif request.build_absolute_uri == "http://127.0.0.1:8000/feature/"%}
+                        Feature
+                    {% elif request.build_absolute_uri == "http://127.0.0.1:8000/quote/"%}
+                        Quote
+                    {% elif request.build_absolute_uri == "http://127.0.0.1:8000/team/"%}
+                        Team
+                    {% elif request.build_absolute_uri == "http://127.0.0.1:8000/testimonial/"%}
+                        Testimonial
+                    {% elif request.build_absolute_uri == "http://127.0.0.1:8000/404/"%}
+                        Not Found
+                    {% else %}
+                        Contact
+                    {% endif %}
+                </h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">About</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    {% endblock nav_bar %}
+
     {% block content %}
         <!-- 404 Start -->
         <div class="container-xxl py-6 wow fadeInUp" data-wow-delay="0.1s">

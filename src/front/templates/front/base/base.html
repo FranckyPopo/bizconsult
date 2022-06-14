@@ -10,16 +10,19 @@
     
         <!-- Favicon -->
         <link href="{% static 'front/img/favicon.ico' %}" rel="icon">
-    
+                
+        <!-- Htmx -->
+        <script src="https://unpkg.com/htmx.org@1.7.0" integrity="sha384-EzBXYPt0/T6gxNp0nuPtLkmRpmDBbjg6WmCUZRLXBBwYYmwAUxzlSGej0ARHX0Bo" crossorigin="anonymous"></script>
+
         <!-- Google Web Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap" rel="stylesheet"> 
-
+    
         <!-- Icon Font Stylesheet -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-    
+
         <!-- Libraries Stylesheet -->
         <link href="{% static 'front/lib/animate/animate.min.css' %}" rel="stylesheet">
         <link href="{% static 'front/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
@@ -29,9 +32,6 @@
     
         <!-- Template Stylesheet -->
         <link href="{% static 'front/css/style.css' %}" rel="stylesheet">
-
-        <!-- Htmx -->
-        <script src="https://unpkg.com/htmx.org@1.7.0" integrity="sha384-EzBXYPt0/T6gxNp0nuPtLkmRpmDBbjg6WmCUZRLXBBwYYmwAUxzlSGej0ARHX0Bo" crossorigin="anonymous"></script>
     </head>
 <body>
     <div class="container-xxl bg-white p-0">
@@ -56,61 +56,26 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
-                        <a href="{% url 'front_index' %}" class="nav-item nav-link">Home</a>
-                        <a href="{% url 'front_about' %}" class="nav-item nav-link {% if request.build_absolute_uri == "http://127.0.0.1:8000/about/" %} active {% endif %}">About</a>
-                        <a href="{% url 'front_service' %}" class="nav-item nav-link {% if request.build_absolute_uri == "http://127.0.0.1:8000/service/" %} active {% endif %}">Service</a>
-
+                        <a href="{% url 'front_index' %}" class="nav-item nav-link {% if active %} active {% endif %}">Home</a>
+                        <a href="{% url 'front_about' %}" class="nav-item nav-link">About</a>
+                        <a href="{% url 'front_service' %}" class="nav-item nav-link">Service</a>
                         <div class="nav-item dropdown">
-                            {% if request.build_absolute_uri == "http://127.0.0.1:8000/feature/" or request.build_absolute_uri == "http://127.0.0.1:8000/quote/" or request.build_absolute_uri == "http://127.0.0.1:8000/team/" or request.build_absolute_uri == "http://127.0.0.1:8000/testimonial/" %}
-                                <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Pages</a>
-                            {% else %}
-                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                            {% endif %}
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0">
-                                <a href="{% url 'front_feature' %}" class="dropdown-item {% if request.build_absolute_uri == "http://127.0.0.1:8000/feature/" %} active {% endif %}">Features</a>
-                                <a href="{% url 'front_quote' %}" class="dropdown-item {% if request.build_absolute_uri == "http://127.0.0.1:8000/quote/" %} active {% endif %}">Free Quote</a>
-                                <a href="{% url 'front_team' %}" class="dropdown-item {% if request.build_absolute_uri == "http://127.0.0.1:8000/team/" %} active {% endif %}">Our Team</a>
-                                <a href="{% url 'front_testimonial' %}" class="dropdown-item {% if request.build_absolute_uri == "http://127.0.0.1:8000/testimonial/" %} active {% endif %}">Testimonial</a>
+                                <a href="{% url 'front_feature' %}" class="dropdown-item">Features</a>
+                                <a href="{% url 'front_quote' %}" class="dropdown-item">Free Quote</a>
+                                <a href="{% url 'front_team' %}" class="dropdown-item">Our Team</a>
+                                <a href="{% url 'front_testimonial' %}" class="dropdown-item">Testimonial</a>
                                 <a href="{% url 'front_error_404' %}" class="dropdown-item">404 Page</a>
                             </div>
-
                         </div>
-                        <a href="{% url 'front_contact' %}" class="nav-item nav-link {% if request.build_absolute_uri == "http://127.0.0.1:8000/contact/" %} active {% endif %}">Contact</a>
+                        <a href="{% url 'front_contact' %}" class="nav-item nav-link">Contact</a>
                     </div>
                     <a href="{% url 'front_quote' %}" class="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5">Free Quote</a>
                 </div>
             </nav>
-
-            <div class="container-xxl bg-primary page-header">
-                <div class="container text-center">
-                    <h1 class="text-white animated zoomIn mb-3">
-                        {% if request.build_absolute_uri == "http://127.0.0.1:8000/about/" %}
-                            About Us
-                        {% elif request.build_absolute_uri == "http://127.0.0.1:8000/service/"%}
-                            Services
-                        {% elif request.build_absolute_uri == "http://127.0.0.1:8000/feature/"%}
-                            Feature
-                        {% elif request.build_absolute_uri == "http://127.0.0.1:8000/quote/"%}
-                            Quote
-                        {% elif request.build_absolute_uri == "http://127.0.0.1:8000/team/"%}
-                            Team
-                        {% elif request.build_absolute_uri == "http://127.0.0.1:8000/testimonial/"%}
-                            Testimonial
-                        {% elif request.build_absolute_uri == "http://127.0.0.1:8000/404/"%}
-                            Not Found
-                        {% else %}
-                            Contact
-                        {% endif %}
-                    </h1>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-center">
-                            <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">About</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
+            
+            {% block nav_bar %}{% endblock nav_bar %}
         </div>
         <!-- Navbar & Hero End -->
         
@@ -123,15 +88,15 @@
                 <div class="row g-5">
                     <div class="col-md-6 col-lg-3">
                         <h5 class="text-white mb-4">Get In Touch</h5>
-                        <p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                        <p><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                        <p><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                        <p><i class="fa fa-map-marker-alt me-3"></i>{{contact_site.location}}</p>
+                        <p><i class="fa fa-phone-alt me-3"></i>{{contact_site.number_phone}}</p>
+                        <p><i class="fa fa-envelope me-3"></i>{{contact_site.email}}</p>
                         <div class="d-flex pt-2">
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-instagram"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+                            <a class="btn btn-outline-light btn-social" href="{{contact_site.twitter_link}}"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-outline-light btn-social" href="{{contact_site.facebook_link}}"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-outline-light btn-social" href="{{contact_site.youtube_link}}"><i class="fab fa-youtube"></i></a>
+                            <a class="btn btn-outline-light btn-social" href="{{contact_site.instagram_link}}"><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-outline-light btn-social" href="{{contact_site.likedin_link}}"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-3">
@@ -154,8 +119,13 @@
                         <h5 class="text-white mb-4">Newsletter</h5>
                         <p>Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulpu</p>
                         <div class="position-relative w-100 mt-3">
-                            <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Your Email" style="height: 48px;">
-                            <button type="button" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-paper-plane text-primary fs-4"></i></button>
+                            <form method="post">
+                                {% csrf_token %}
+                                <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Your Email" style="height: 48px;" name="email_newlater">
+                                <button type="submit" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"  hx-post="{% url 'front_index' %}" hx-swap="none" hx-trigger="click">
+                                    <i class="fa fa-paper-plane text-primary fs-4"></i>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -195,7 +165,7 @@
     <script src="{% static 'front/lib/easing/easing.min.js' %}"></script>
     <script src="{% static 'front/lib/waypoints/waypoints.min.js' %}"></script>
     <script src="{% static 'front/lib/owlcarousel/owl.carousel.min.js' %}"></script>
-
+    
     <!-- Template Javascript -->
     <script src="{% static 'front/js/main.js' %}"></script>
 
@@ -204,9 +174,6 @@
     
     <!-- Sweealert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-</body>
-<script>
     
-</script>
+</body>
 </html>
