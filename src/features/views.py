@@ -7,7 +7,6 @@ from django.views import View
 from django.db.utils import IntegrityError
 from django.http import HttpResponse
 
-
 class RequestIndex(View):
     def get(self, request):
         datas = {

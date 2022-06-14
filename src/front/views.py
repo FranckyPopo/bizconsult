@@ -35,5 +35,3 @@ def front_team(request):
 def front_testimonial(request):
     return render(request, "front/pages/testimonial.html", context={"testimonials": Testimonial.objects.all()})
 
-
-
