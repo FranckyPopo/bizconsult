@@ -16,7 +16,7 @@
                         <div class="row g-3 mb-4">
                             <div class="col-12 d-flex">
                                 <div class="flex-shrink-0 btn-lg-square rounded-circle bg-primary">
-                                    <i class="fa fa-user-tie text-white"></i>
+                                    <i class="{{ about.image_one }} text-white"></i>
                                 </div>
                                 <div class="ms-4">
                                     <h6>{{ about.title_one }}</h6>
@@ -25,7 +25,7 @@
                             </div>
                             <div class="col-12 d-flex">
                                 <div class="flex-shrink-0 btn-lg-square rounded-circle bg-primary">
-                                    <i class="fa fa-chart-line text-white"></i>
+                                    <i class="{{ about.image_two }} text-white"></i>
                                 </div>
                                 <div class="ms-4">
                                     <h6>{{ about.title_two }}</h6>
@@ -65,6 +65,7 @@
             </div>
         </div>
         <!-- Newsletter End -->
+        
         <!-- Service Start -->
         <div class="container-xxl py-6">
             <div class="container">
@@ -78,7 +79,7 @@
                             <div class="service-item rounded h-100">
                                 <div class="d-flex justify-content-between">
                                     <div class="service-icon">
-                                        <i class="fa fa-user-tie fa-2x"></i>
+                                        <i class="{{ service.image }} fa-2x"></i>
                                     </div>
                                     <a class="service-btn" href="">
                                         <i class="fa fa-link fa-2x"></i>
@@ -112,7 +113,7 @@
                                 <div class="col-sm-6 wow fadeIn" data-wow-delay="0.1s">
                                     <div class="d-flex align-items-center mb-3">
                                         <div class="flex-shrink-0 btn-square bg-primary rounded-circle me-3">
-                                            <i class="fa fa-cubes text-white"></i>
+                                            <i class="{{ feature.image }} text-white"></i>
                                         </div>
                                         <h6 class="mb-0">{{ feature.title }}</h6>
                                     </div>

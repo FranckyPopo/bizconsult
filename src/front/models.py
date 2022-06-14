@@ -18,19 +18,19 @@ class About(models.Model):
     description_main = models.TextField(max_length=1000)
     
     # Autre description de l'apropos
-    image_one = models.ImageField(blank=True) 
     title_one = models.CharField(max_length=150)
     description_one = models.TextField(max_length=1000)
-    image_two = models.ImageField(blank=True) 
+    image_one = models.CharField(max_length=150)
     title_two = models.CharField(max_length=150)
     description_two = models.TextField(max_length=1000)
+    image_two = models.CharField(max_length=150)
     
     created = models.DateTimeField(default=timezone.now())
     deleted = models.DateTimeField(auto_now=True)
     updated = models.DateTimeField(auto_now=True)
     
 class OurService(models.Model):
-    image = models.ImageField(blank=True)
+    image = models.CharField(max_length=150)
     title = models.CharField(max_length=150)
     description = models.TextField(max_length=1000)
     
@@ -47,9 +47,9 @@ class FeatureDescription(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
 class Feature(models.Model):
-    image = models.ImageField(blank=True)
     title = models.CharField(max_length=150)
     description = models.TextField(max_length=1000)
+    image = models.CharField(max_length=150)
     
     created = models.DateTimeField(default=timezone.now())
     deleted = models.DateTimeField(auto_now=True)

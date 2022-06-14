@@ -28,7 +28,7 @@ class RequestIndex(View):
 
         if re.search(regex, email):  
             try:
-                data = Newsletter.objects.create(email=email)  
+                Newsletter.objects.create(email=email)  
                 return HttpResponse(
                     status=204,
                     headers={
